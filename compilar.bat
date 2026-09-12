@@ -1,13 +1,13 @@
 @echo off
 setlocal EnableExtensions EnableDelayedExpansion
 
-title Compilar TowerFallEspanol
+title Compilar TowerFallLocalization
 
 set "ROOT=%~dp0"
 set "GAME=C:\Program Files (x86)\Steam\steamapps\common\TowerFall - FortRise"
 if not "%~1"=="" set "GAME=%~1"
 
-set "MOD=%GAME%\Mods\TowerFallEspanol"
+set "MOD=%GAME%\Mods\TowerFallLocalization"
 set "DOTNET=%ProgramFiles%\dotnet\dotnet.exe"
 set "SDK_VERSION=10.0.401"
 set "REF_VERSION=10.0.12"
@@ -16,7 +16,7 @@ set "REF=%ProgramFiles%\dotnet\packs\Microsoft.NETCore.App.Ref\%REF_VERSION%\ref
 set "SOURCE=%ROOT%src\TowerFallEspanolModule.cs"
 set "JSON=%ROOT%translations.json"
 set "BUILD=%ROOT%build"
-set "OUTPUT=%BUILD%\TowerFallEspanol.dll"
+set "OUTPUT=%BUILD%\TowerFallLocalization.dll"
 
 if not exist "%DOTNET%" goto :missing
 if not exist "%CSC%" goto :missing
@@ -33,7 +33,7 @@ if not exist "%MOD%" mkdir "%MOD%"
 set "REFS="
 for %%F in ("%REF%\*.dll") do set "REFS=!REFS! /reference:%%~fF"
 
-echo Compilando TowerFallEspanol.dll...
+echo Compilando TowerFallLocalization.dll...
 "%DOTNET%" "%CSC%" /nologo /target:library /out:"%OUTPUT%" "%SOURCE%" !REFS! ^
  /reference:"%GAME%\TowerFall.Patch.dll" ^
  /reference:"%GAME%\0Harmony.dll" ^
@@ -46,14 +46,14 @@ if errorlevel 1 (
     exit /b 1
 )
 
-copy /y "%OUTPUT%" "%MOD%\TowerFallEspanol.dll" >nul
+copy /y "%OUTPUT%" "%MOD%\TowerFallLocalization.dll" >nul
 if errorlevel 1 goto :install_error
 copy /y "%JSON%" "%MOD%\translations.json" >nul
 if errorlevel 1 goto :install_error
 
 echo.
 echo Compilacion e instalacion completadas.
-echo DLL: %MOD%\TowerFallEspanol.dll
+echo DLL: %MOD%\TowerFallLocalization.dll
 echo JSON: %MOD%\translations.json
 echo El juego no se ha ejecutado.
 pause

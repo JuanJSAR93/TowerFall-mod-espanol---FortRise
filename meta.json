@@ -1,9 +1,9 @@
 {
-  "name": "TowerFallEspanol",
+  "name": "TowerFallLocalization",
   "version": "0.2.0",
   "priority": "Highest",
-  "description": "Traducción inicial de menús, nombres de mapas y consejos.",
-  "dll": "TowerFallEspanol.dll",
+  "description": "Mod de traducción y localización para TowerFall con soporte multi-idioma.",
+  "dll": "TowerFallLocalization.dll",
   "dependencies": [
     {
       "name": "FortRise",

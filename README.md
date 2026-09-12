@@ -32,8 +32,8 @@ A localization and translation mod for **TowerFall** built using **FortRise** an
 Double-click `compilar.bat`. The script compiles the C# source code and copies the mod files to your game installation:
 
 ```text
-Mods/TowerFallEspanol/TowerFallEspanol.dll
-Mods/TowerFallEspanol/translations.json
+Mods/TowerFallLocalization/TowerFallLocalization.dll
+Mods/TowerFallLocalization/translations.json
 ```
 
 Default installation path:
@@ -51,7 +51,7 @@ compilar.bat "D:\Games\TowerFall - FortRise"
 ## Project Structure
 
 ```text
-TowerFallEspanol/
+TowerFallLocalization/
 ├─ src/
 │  └─ TowerFallEspanolModule.cs    # FortRise module entry & Harmony patches
 ├─ langs/                          # Language packs

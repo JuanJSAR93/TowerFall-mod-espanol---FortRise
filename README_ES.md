@@ -1,6 +1,6 @@
 [Read in English](README.md)
 
-# TowerFall Español (Multi-idioma)
+# TowerFall Localization
 
 Mod de localización y traducción para **TowerFall** utilizando **FortRise** y **Harmony**. Traduce el 100% de la interfaz, modos de juego, variantes, estadísticas, premios, arqueros y consejos.
 
@@ -26,8 +26,8 @@ Mod de localización y traducción para **TowerFall** utilizando **FortRise** y 
 Haz doble clic en `compilar.bat`. El script compila el código y copia los archivos a tu instalación:
 
 ```text
-Mods/TowerFallEspanol/TowerFallEspanol.dll
-Mods/TowerFallEspanol/translations.json
+Mods/TowerFallLocalization/TowerFallLocalization.dll
+Mods/TowerFallLocalization/translations.json
 ```
 
 La ruta predeterminada es:
@@ -45,7 +45,7 @@ compilar.bat "D:\Juegos\TowerFall - FortRise"
 ## Estructura del proyecto
 
 ```text
-TowerFallEspanol/
+TowerFallLocalization/
 ├─ src/
 │  └─ TowerFallEspanolModule.cs    # Módulo FortRise y parches Harmony
 ├─ langs/                          # Paquetes de idiomas adicionales
