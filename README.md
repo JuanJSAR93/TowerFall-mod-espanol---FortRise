@@ -1,84 +1,89 @@
-# TowerFall Español
+[Leer en Español](README_ES.md)
 
-Mod de traducción al español para TowerFall usando FortRise y Harmony.
+# TowerFall Localization & Multi-Language Mod
 
-## Requisitos
+A localization and translation mod for **TowerFall** built using **FortRise** and **Harmony**. It translates 100% of the game UI, menus, game modes, match variants, statistics, awards, archer titles, and hints.
 
-- TowerFall instalado con FortRise.
-- .NET SDK `10.0.401`.
-- La instalación debe contener `TowerFall.Patch.dll`, `0Harmony.dll` y `Microsoft.Extensions.Logging.Abstractions.dll`.
+## Features
 
-El compilador utiliza las referencias del SDK y las DLL de la instalación de TowerFall. Por eso no se incluyen binarios del juego en este repositorio.
+- **Full In-Game Localization:** Complete translation of menus, audio/video options, controls, pause screens, and all game modes (Versus, Quest, Dark World, and Trials).
+- **Multi-Language Packs (`langs/`):** Includes complete 536-string translation dictionaries for:
+  * 🇪🇸 **Spanish** (`translations_ES.json`) — Default active translation
+  * 🇫🇷 **French** (`translations_FR.json`)
+  * 🇧🇷 **Brazilian Portuguese** (`translations_PT_BR.json`)
+  * 🇩🇪 **German** (`translations_DE.json`)
+  * 🇮🇹 **Italian** (`translations_IT.json`)
+  * 🇷🇺 **Russian** (`translations_RU.json`)
+- **Balanced Line Wrapping:** Automatically recalculates two-line splits for end-game awards and button guides to prevent text clipping.
+- **Non-Invasive Runtime Hooking:** Operates entirely in memory via Harmony patches without modifying original XMLs or game binaries.
 
-## Compilar e instalar
+---
 
-Haz doble clic en `compilar.bat`. El script compila el código y copia estos archivos al mod instalado:
+## Requirements
+
+- TowerFall installed with [FortRise](https://github.com/FortRise/FortRise).
+- .NET SDK `10.0.401` *(only required if compiling from source)*.
+- The installation must contain `TowerFall.Patch.dll`, `0Harmony.dll`, and `Microsoft.Extensions.Logging.Abstractions.dll`.
+
+---
+
+## Build and Install
+
+Double-click `compilar.bat`. The script compiles the C# source code and copies the mod files to your game installation:
 
 ```text
 Mods/TowerFallEspanol/TowerFallEspanol.dll
 Mods/TowerFallEspanol/translations.json
 ```
 
-La ruta predeterminada es:
-
+Default installation path:
 ```text
 C:\Program Files (x86)\Steam\steamapps\common\TowerFall - FortRise
 ```
 
-También se puede pasar otra instalación como primer argumento:
-
+You can also pass a custom game directory as the first argument:
 ```bat
-compilar.bat "D:\Juegos\TowerFall - FortRise"
+compilar.bat "D:\Games\TowerFall - FortRise"
 ```
 
-El script no ejecuta el juego. Si la copia falla, cierra TowerFall y vuelve a compilar.
+---
 
-## Estructura
+## Project Structure
 
 ```text
-repo/
+TowerFallEspanol/
 ├─ src/
-│  └─ TowerFallEspanolModule.cs
-├─ langs/
+│  └─ TowerFallEspanolModule.cs    # FortRise module entry & Harmony patches
+├─ langs/                          # Language packs
 │  ├─ translations_ES.json
 │  ├─ translations_FR.json
 │  ├─ translations_PT_BR.json
 │  ├─ translations_DE.json
 │  ├─ translations_IT.json
 │  └─ translations_RU.json
-├─ translations.json
-├─ meta.json
-├─ compilar.bat
-└─ README.md
+├─ translations.json               # Active translation file (Spanish by default)
+├─ meta.json                       # FortRise mod metadata manifest
+├─ compilar.bat                    # Build and install script
+├─ README.md                       # English documentation
+└─ README_ES.md                    # Spanish documentation
 ```
 
-`translations.json` es el archivo editable de traducciones. Las claves son los textos originales en inglés y los valores son sus equivalentes en español. Se conservan mayúsculas, signos y separadores `|` cuando forman parte del texto original. La carpeta `langs/` contiene variantes adicionales preparadas para otros idiomas.
+To use another language, copy the desired JSON file from `langs/` and replace `translations.json`.
 
-## Mecanismo de traducción
+---
 
-El módulo se carga como una DLL de FortRise. Al crearse, inicializa `TranslationService`, lee `translations.json` mediante `IModContent` y registra los parches de Harmony.
+## How It Works (Translation Mechanism)
 
-La traducción funciona principalmente en estos puntos:
+The mod loads as a FortRise DLL module. Upon initialization, it instantiates `TranslationService`, loads `translations.json` via `IModContent`, and registers Harmony runtime patches:
 
-- Intercepta las funciones de dibujo de `Monocle.Draw`, `Text` y `OutlineText`, cubriendo textos dibujados directamente y textos almacenados en componentes.
-- Traduce antes de medir los textos de `VariantButton` y `MenuButtonGuide`. Esto permite que los globos de variantes y las etiquetas de botones se ajusten al ancho español.
-- Traduce nombres de arqueros cuando `ArcherData` termina de inicializarse.
-- Traduce premios mediante `AwardInfo`. En el recuento final reconstruye el nombre completo, lo traduce y luego lo divide equilibradamente en líneas para evitar cortes.
-- Traduce fragmentos dinámicos y textos divididos por `|`, como lecciones y consejos.
+- **Drawing text:** Intercepts `Monocle.Draw`, `Text`, and `OutlineText`.
+- **Buttons and guides:** Translates text before measuring in `VariantButton` and `MenuButtonGuide` so bubbles and guides dynamically adapt their width.
+- **Archer names:** Translates titles and names when `ArcherData` finishes initializing.
+- **Awards:** Intercepts `AwardInfo` and calculates an optimal, balanced two-line split.
+- **Dynamic text fragments:** Translates `|`-delimited strings and gameplay tips.
 
-La traducción es conservadora: si una clave no existe, el texto original se mantiene. Las entradas se cargan desde el JSON del mod, por lo que no es necesario reemplazar los XML originales del juego.
+---
 
-## Fuente de datos
+## Credits and Acknowledgments
 
-Los textos se obtuvieron de los ensamblados de TowerFall/FortRise y de los datos de `Content/Atlas/GameData`. Las lecciones, consejos y nombres de temas se integraron en `translations.json`.
-
-## Nota sobre caracteres
-
-El juego puede utilizar fuentes sin todos los caracteres Unicode. El módulo normaliza internamente los valores que se dibujan para evitar errores de `SpriteFont`; por eso conviene probar dentro del juego cualquier traducción con tildes, `ñ` o símbolos especiales.
-
-## Créditos y Referencias
-
-Este proyecto se apoya e inspira en el trabajo de la comunidad de modding de TowerFall:
-
-- **[FortRise](https://github.com/FortRise/FortRise)**: El *mod loader* moderno para TowerFall, utilizado en este proyecto junto con Harmony para aplicar las traducciones mediante parches en tiempo de ejecución.
-
+- **[FortRise](https://github.com/FortRise/FortRise):** The official community mod loader and framework for TowerFall.
