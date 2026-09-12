@@ -78,8 +78,8 @@ El juego puede utilizar fuentes sin todos los caracteres Unicode. El módulo nor
 
 ## Créditos y Referencias
 
-Este proyecto fue desarrollado tomando como referencia e inspiración el trabajo de la comunidad de modding de TowerFall:
+Este proyecto se apoya e inspira en el trabajo de la comunidad de modding de TowerFall:
 
-- **[TF-8-Player](https://github.com/Jonesey13/TF-8-Player)** (por **Jonesey13**): Mod de 8 jugadores para TowerFall, que sirvió como base estructural de referencia para la creación e integración de módulos con Harmony y FortRise.
-- **[FortRise](https://github.com/FortRise/FortRise)**: El *mod loader* y framework base para TowerFall.
+- **[TF-8-Player](https://github.com/Jonesey13/TF-8-Player)** (por **Jonesey13**): Mod clásico de 8 jugadores para TowerFall (basado originalmente en el framework Bartizan y Mono.Cecil), que sirvió como referencia e inspiración para comprender e interactuar con la estructura interna del juego.
+- **[FortRise](https://github.com/FortRise/FortRise)**: El *mod loader* moderno para TowerFall, utilizado en este proyecto junto con Harmony para aplicar las traducciones mediante parches en tiempo de ejecución.
 
