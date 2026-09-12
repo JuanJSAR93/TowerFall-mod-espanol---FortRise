@@ -1,0 +1,17 @@
+{
+  "name": "TowerFallEspanol",
+  "version": "0.2.0",
+  "priority": "Highest",
+  "description": "Traducción inicial de menús, nombres de mapas y consejos.",
+  "dll": "TowerFallEspanol.dll",
+  "dependencies": [
+    {
+      "name": "FortRise",
+      "version": "5.4.0"
+    },
+    {
+      "name": "FortRise.Content",
+      "version": "5.4.0"
+    }
+  ]
+}
