@@ -39,13 +39,20 @@ El script no ejecuta el juego. Si la copia falla, cierra TowerFall y vuelve a co
 repo/
 ├─ src/
 │  └─ TowerFallEspanolModule.cs
+├─ langs/
+│  ├─ translations_ES.json
+│  ├─ translations_FR.json
+│  ├─ translations_PT_BR.json
+│  ├─ translations_DE.json
+│  ├─ translations_IT.json
+│  └─ translations_RU.json
 ├─ translations.json
 ├─ meta.json
 ├─ compilar.bat
 └─ README.md
 ```
 
-`translations.json` es el archivo editable de traducciones. Las claves son los textos originales en inglés y los valores son sus equivalentes en español. Se conservan mayúsculas, signos y separadores `|` cuando forman parte del texto original.
+`translations.json` es el archivo editable de traducciones. Las claves son los textos originales en inglés y los valores son sus equivalentes en español. Se conservan mayúsculas, signos y separadores `|` cuando forman parte del texto original. La carpeta `langs/` contiene variantes adicionales preparadas para otros idiomas.
 
 ## Mecanismo de traducción
 
@@ -68,3 +75,11 @@ Los textos se obtuvieron de los ensamblados de TowerFall/FortRise y de los datos
 ## Nota sobre caracteres
 
 El juego puede utilizar fuentes sin todos los caracteres Unicode. El módulo normaliza internamente los valores que se dibujan para evitar errores de `SpriteFont`; por eso conviene probar dentro del juego cualquier traducción con tildes, `ñ` o símbolos especiales.
+
+## Créditos y Referencias
+
+Este proyecto fue desarrollado tomando como referencia e inspiración el trabajo de la comunidad de modding de TowerFall:
+
+- **[TF-8-Player](https://github.com/Jonesey13/TF-8-Player)** (por **Jonesey13**): Mod de 8 jugadores para TowerFall, que sirvió como base estructural de referencia para la creación e integración de módulos con Harmony y FortRise.
+- **[FortRise](https://github.com/FortRise/FortRise)**: El *mod loader* y framework base para TowerFall.
+
