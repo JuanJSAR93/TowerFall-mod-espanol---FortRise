@@ -32,7 +32,7 @@ Mods/TowerFallLocalization/translations.json
 
 La ruta predeterminada es:
 ```text
-C:\Program Files (x86)\Steam\steamapps\common\TowerFall - FortRise
+C:\Program Files (x86)\Steam\steamapps\common\TowerFall
 ```
 
 También puedes especificar otra ruta de instalación como argumento:
