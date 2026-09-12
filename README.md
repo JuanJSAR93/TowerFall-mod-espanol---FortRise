@@ -38,7 +38,7 @@ Mods/TowerFallLocalization/translations.json
 
 Default installation path:
 ```text
-C:\Program Files (x86)\Steam\steamapps\common\TowerFall - FortRise
+C:\Program Files (x86)\Steam\steamapps\common\TowerFall
 ```
 
 You can also pass a custom game directory as the first argument:
